@@ -1,1 +1,91 @@
-This is a step by step tutorial of installation of GEANT 4 10.6 in a CentOS 7 recently installed (April 2020)
+This is a step by step tutorial of installation of GEANT 4 10.6 in a CentOS 7 recently installed (April 2020).
+
+Commands to get the Geant4
+
+$ ssh root@IP_Address -p Port_number
+
+$ yum -y update
+
+$ sudo yum install centos-release-scl
+
+$ sudo yum install devtoolset-7
+
+$ scl enable devtoolset-7 bash 
+
+$ wget http://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+
+$ tar xvf make-4.3.tar.gz
+
+$ cd make-4.3/
+
+$ ./configure
+
+$ make
+
+$ make install
+
+$ sudo yum install expat
+
+$ sudo yum install expat-devel
+
+$ sudo yum install zlib
+
+$ sudo yum install zlib-devel
+
+$ sudo yum -y install bzip2
+
+$ sudo yum install xerces-c 
+
+$ sudo yum install xerces-c-devel
+
+$ sudo yum install motif
+
+$ sudo yum install openmotif-devel
+
+$ sudo yum install qt5-qtbase-devel
+
+$ sudo yum install libXmu
+
+$ sudo yum install libX11-devel
+
+$ sudo yum install freeglut-devel
+
+Download the source at https://geant4.web.cern.ch/support/download_archive - Geant4 10.5 (or 10.6 if you want, but remember to replace 5 with 6 in the following commands) - GNU or Linux tar format (32.8Mb, 34413415 bytes). Create a directory where to put the downloaded source :
+
+$ mkdir geant4
+
+Put your downloaded source there and then in your terminal : 
+
+$ cd geant4
+
+$ tar xvf geant4.10.05.p01.tar.gz
+
+$ mkdir geant4.10.05-build
+
+$ cd geant4.10.05-build
+
+$ cmake -DCMAKE_INSTALL_PREFIX=/home/[insert-here-your-user-name]/geant4/geant4.10.05-install /home/[insert-here-your-user-name]/geant4/geant4.10.05.p01
+
+$ cmake -DGEANT4_INSTALL_DATA=ON .
+
+$ cmake -DGEANT4_USE_GDML=ON .
+
+$ cmake -DGEANT4_USE_QT=ON .
+
+$ cmake -DGEANT4_USE_OPENGL_X11=ON .
+
+$ cmake -DGEANT4_USE_XM=ON .
+
+$ cmake -DGEANT4_USE_RAYTRACER_X11=ON .
+
+$ make -jN
+
+$ make install
+
+### Postinstall Setup
+
+Assuming you are at /home/[insert-here-your-user-name]/geant4/geant4.10.05-install/bin, you can configure your Geant4 to run your applications with (you have to do it every time you open a new terminal) :
+
+$ . geant4.sh
+
+Last test : April 2020.
